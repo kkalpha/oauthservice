@@ -1,0 +1,18 @@
+CREATE TABLE `auth_client_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_id` varchar(100) NOT NULL,
+  `client_secret` varchar(255) NOT NULL,
+  `client_name` varchar(100) DEFAULT NULL,
+  `redirect_uri` varchar(1000) NOT NULL,
+  `grant_type` varchar(100) DEFAULT 'authorization_code,refresh_token,client_credentials,password,implicit',
+  `scope` varchar(100) DEFAULT 'sso',
+  `description` varchar(1000) DEFAULT NULL,
+  `create_user` varchar(50) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_user` varchar(50) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `status_flag` int(2) DEFAULT '0',
+  `version` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_client_id` (`client_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;

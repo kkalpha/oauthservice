@@ -1,0 +1,254 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-size: 14px;
+    background-color: #fff;
+    font-family: "Monospaced Number","Chinese Quote",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    color: rgba(0,0,0,.65);
+}
+.login-error {
+    background-color: #fff1f0;
+    border: 1px solid #ffa39e;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    position: relative;
+    padding: 8px 15px 8px 37px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.login-normal{
+	display: none;	
+}
+.login-error i {
+    color: #f5222d;
+    position: absolute;
+    top: 11.5px;
+    left: 16px;
+    display: inline-block;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.container {
+    background-image: url("./img/login.svg");
+    background-color: #1474a4;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center 75px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-content {
+    width: 95%;
+    z-index: 10;
+}
+.login-content-top {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+}
+.login-content-head {
+    height: 44px;
+    line-height: 44px;
+}
+.login-content-head a {
+    text-decoration: none;
+}
+.login-content-logo {
+    height: 44px;
+    vertical-align: top;
+    margin-right: 16px;
+}
+.login-content-title {
+    font-size: 26px;
+    color: #fff;
+    font-family: "Myriad Pro", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    position: relative;
+    top: 2px;
+}
+.login-content-body {
+    padding: 40px 10px 10px 10px;
+    max-width: 410px;
+    background-color: #f5f5f5;
+    margin: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    border-radius: 5px;
+}
+.login-content-form {
+    display: block;
+    max-width: 368px;
+    margin: 0 auto;
+}
+.login-content-input-group {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    position: relative;
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 24px;
+}
+.login-content-addon {
+    width: 1px;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: table-cell;
+    background-color: #fff;
+    position: relative;
+    padding: 0 11px;
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+.login-content-addon:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+}
+.login-content-addon:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+}
+.login-content-addon .anticon{
+    display: inline-block;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.login-content-input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    position: relative;
+    height: 32px;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    transition: all 0.3s;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: inherit;
+}
+.login-content-input:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.login-content-error .login-content-addon {
+    color: #f5222d;
+    border-color: #f5222d;
+}
+.login-content-error .login-content-input {
+    border-color: #f5222d;
+    outline-color: #f5222d;
+}
+.login-content-button {
+    width: 100%;
+    color: #fff;
+    background-color: #1474a4;
+    border-color: #1474a4;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 0 rgba(0,0,0,.045);
+    line-height: 1.499;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    white-space: nowrap;
+    padding: 0 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    height: 32px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    position: relative;
+    margin-bottom: 24px;
+}
+.login-content-button:hover {
+    color: #fff;
+    background-color: #318ab0;
+    border-color: #318ab0;
+    text-decoration: none;
+}
+.login-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    font-size: 12px;
+    z-index: 9;
+    text-align: center;
+}
+.login-footer a {
+    color: #fff;
+    text-decoration: none;
+}
+.login-footer span {
+    color: #b3c8e6;
+}
+.error-text {
+    color: #f5222d;
+}
+@media (max-width: 576px) {
+    .container {
+        background-position: left top;
+    }
+}

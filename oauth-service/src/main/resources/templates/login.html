@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Login</title>
+    <link rel="stylesheet" href="static/login.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="login-content">
+            <div class="login-content-top">
+                <div class="login-content-head">
+                    <a href="#">
+                        <img class="login-content-logo" src="static/img/github.jpg">
+                        <span class="login-content-title">Portal Login</span>
+                    </a>
+                </div>
+            </div>
+            <div class="login-content-body">
+                <div class=login-content-form>
+                    <form method="post" action="login" onsubmit="return validateForm();">
+
+                        <div th:class="${className}">
+                            <i class="anticon ant-alert-icon ng-tns-c6-0 anticon-close-circle ng-star-inserted" nz-icon="" ng-reflect-type="close-circle" ng-reflect-theme="fill" style=""><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" class="ng-tns-c6-0" data-icon="close-circle" aria-hidden="true"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 0 1-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path></svg></i>
+                            <span th:text="${loginResult}"></span>
+                        </div>
+                        <div id="errorText" class="login-error" style="display: none;">
+                            <i class="anticon ant-alert-icon ng-tns-c6-0 anticon-close-circle ng-star-inserted" nz-icon="" ng-reflect-type="close-circle" ng-reflect-theme="fill" style=""><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" class="ng-tns-c6-0" data-icon="close-circle" aria-hidden="true"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 0 1-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path></svg></i>
+                            <span>Please input username or password!</span>
+                        </div>
+                        <div>
+                            <span class="login-content-input-group">
+                                <span class="login-content-addon">
+                                    <i _ngcontent-c2="" nz-icon="" theme="outline" type="user" class="anticon anticon-user" ng-reflect-type="user" ng-reflect-theme="outline"><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" data-icon="user" aria-hidden="true"><path d="M858.5 763.6a374 374 0 0 0-80.6-119.5 375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"></path></svg></i>
+                                </span>
+                                <input id="inputName" name="inputname" placeholder="Email" type="text" class="login-content-input">
+                                <input id="userName" name="username" placeholder="Email" type="hidden" class="login-content-input">
+                                <span class="login-content-addon">@xxx.com</span>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="login-content-input-group">
+                                <span class="login-content-addon">
+                                    <i _ngcontent-c2="" nz-icon="" theme="outline" type="lock" class="anticon anticon-lock" ng-reflect-type="lock" ng-reflect-theme="outline"><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" data-icon="lock" aria-hidden="true"><path d="M832 464h-68V240c0-70.7-57.3-128-128-128H388c-70.7 0-128 57.3-128 128v224h-68c-17.7 0-32 14.3-32 32v384c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V496c0-17.7-14.3-32-32-32zM332 240c0-30.9 25.1-56 56-56h248c30.9 0 56 25.1 56 56v224H332V240zm460 600H232V536h560v304zM484 701v53c0 4.4 3.6 8 8 8h40c4.4 0 8-3.6 8-8v-53a48.01 48.01 0 1 0-56 0z"></path></svg></i>
+                                </span>
+                                <input id="password" name="password" placeholder="Password" type="password" class="login-content-input">
+                            </span>
+                        </div>
+                        <div>
+                            <button class="login-content-button" onclick="updateUserName()">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-footer">
+        <div>
+            <a href="http://www.miibeian.gov.cn/">沪ICP备090fdf110号</a>&nbsp;&nbsp;
+            <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010se001824">沪公网安备316020d824号</a>
+        </div>
+        <span>
+            © YK，2004 - 2020。保留所有权利。
+        </span>
+    </div>
+    <script type="text/javascript">
+        function updateUserName() {
+            var inputName = document.getElementById('inputName');
+            var userName = document.getElementById('userName');
+            if (inputName.value.indexOf('@') > 0) {
+                userName.value = inputName.value.trim();
+            } else {
+                userName.value = inputName.value.trim() + '@xxx.com';
+            }
+            console.log(document.getElementById('userName').value);
+        }
+        function validateForm() {
+            var userName = document.getElementById('inputName').value;
+            var password = document.getElementById('password').value;
+            if (userName == null || userName == "" || password == null || password == "") {
+                document.getElementById('errorText').style.display = 'block';
+                return false;
+            } else {
+                document.getElementById('errorText').style.display = 'none';
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

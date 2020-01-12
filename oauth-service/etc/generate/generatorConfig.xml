@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- https://blog.csdn.net/yf275908654/article/details/49815377 -->
+<generatorConfiguration>
+
+	<context id="mysql">
+
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<plugin
+				type="com.tech.base.persistence.mybatis.generator.FuzzySearchPlugin" />
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection
+				connectionURL="jdbc:mysql://localhost:3306/oauth?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+				driverClass="com.mysql.jdbc.Driver" password="root"
+				userId="root">
+			<property name="useInformationSchema" value="true" />
+			<property name="nullCatalogMeansCurrent" value="true" />
+		</jdbcConnection>
+		<javaModelGenerator
+				targetPackage="com.tech.oauth.entity"
+				targetProject="mybatis-generator/src/main/java" />
+		<sqlMapGenerator
+				targetPackage="com.tech.oauth.mapper"
+				targetProject="mybatis-generator/src/main/java" />
+		<javaClientGenerator
+				targetPackage="com.tech.oauth.mapper"
+				targetProject="mybatis-generator/src/main/java" type="XMLMAPPER" />
+
+		<table tableName="auth_client_details">
+			<generatedKey column="id" sqlStatement="MySql"
+						  identity="true" />
+		</table>
+
+
+
+
+		<!-- <table tableName="base_file"> <generatedKey column="id" sqlStatement="MySql"
+			identity="true" /> </table> <table tableName="demo_data_opr"> <generatedKey
+			column="id" sqlStatement="select replace(uuid(), '-', '')"/> </table> <table
+			tableName="mst_emp_info"> <generatedKey column="emp_id" sqlStatement="select
+			replace(uuid(), '-', '')"/> </table> <table tableName="reimbursement_requst">
+			<generatedKey column="id" sqlStatement="select replace(uuid(), '-', '')"/>
+			</table> -->
+	</context>
+</generatorConfiguration>

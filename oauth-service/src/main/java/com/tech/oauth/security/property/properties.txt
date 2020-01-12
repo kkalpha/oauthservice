@@ -1,0 +1,10 @@
+
+base.security.login-need-captcha=false
+base.security.ldapurl=ldap://code1.emi.philips.com
+
+base.security.white-user-file=classpath:user-list
+base.security.max-login-attempt=5
+base.security.lock-hours=2
+
+base.security.system-url=https://www.portal.xx.com.cn/uibasedemo
+base.security.logout-url=https://www.portal.xx.com.cn/uibasedemo
