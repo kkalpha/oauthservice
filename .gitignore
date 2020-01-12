@@ -14,4 +14,4 @@ servers
 .bpmn
 ui
 .idea
-.iml
+*.iml

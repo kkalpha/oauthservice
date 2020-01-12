@@ -27,7 +27,7 @@ public class OAuthCallbackController {
     @Value("${spring.security.oauth2.client.registration.my-client-1.client-secret}")
     private String clientSecret;
     
-    @Value("${spring.security.oauth2.client.registration.my-client-1.redirect-uri-template}")
+    @Value("${spring.security.oauth2.client.registration.my-client-1.redirect-uri}")
     private String redirectUri;
     
     @Value("${spring.security.oauth2.client.provider.my-oauth-provider.authorization-uri}")
