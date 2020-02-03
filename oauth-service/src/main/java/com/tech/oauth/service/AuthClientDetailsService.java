@@ -39,13 +39,12 @@ public class AuthClientDetailsService {
 
         clientDetails.setAuthorizedGrantTypes(Arrays.asList(authClientDetails.getGrantType().split(",")));
         clientDetails.setScope(Arrays.asList(authClientDetails.getScope().split(",")));
-
+        // set auto approve scopes to avoid user need to do scope authorization
         clientDetails.setAutoApproveScopes(Arrays.asList(authClientDetails.getScope().split(",")));
 
         clientDetails.setAccessTokenValiditySeconds(60*60);
 
         clientDetails.setRefreshTokenValiditySeconds(24*3600);
-
 
         return clientDetails;
 

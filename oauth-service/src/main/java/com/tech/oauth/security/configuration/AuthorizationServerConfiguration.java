@@ -14,9 +14,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 import com.tech.oauth.security.provider.AppClientDetailsService;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableAuthorizationServer
@@ -25,6 +31,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Autowired(required = false)
     private TokenStore tokenStore;
+
+    @Autowired(required = false)
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
+
+    @Autowired(required = false)
+    private TokenEnhancer jwtTokenEnhancer;
 
     public AuthorizationServerConfiguration() {
         logger.debug("AuthorizationServerConfig constructor {}", this);
@@ -57,6 +69,15 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
         if (null != tokenStore) {
             endpoints.tokenStore(tokenStore);
+        }
+
+        if (jwtAccessTokenConverter != null && jwtTokenEnhancer != null) {
+            TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
+            List<TokenEnhancer> enhancers = new ArrayList<>();
+            enhancers.add(jwtTokenEnhancer);
+            enhancers.add(jwtAccessTokenConverter);
+            enhancerChain.setTokenEnhancers(enhancers);
+            endpoints.tokenEnhancer(enhancerChain).accessTokenConverter(jwtAccessTokenConverter);
         }
 
     }

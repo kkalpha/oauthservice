@@ -20,11 +20,11 @@ public class BeanConfig {
          return new BCryptPasswordEncoder();
      }
      
-     @Bean
-     @ConditionalOnProperty(name = "spring.redis.app.enabled", havingValue="true")
-     public TokenStore tokenStore(RedisConnectionFactory redisConnectionFactory) {
-         return new AppRedisTokenStore(redisConnectionFactory);
-     }
+//     @Bean
+//     @ConditionalOnProperty(name = "spring.redis.app.enabled", havingValue="true")
+//     public TokenStore tokenStore(RedisConnectionFactory redisConnectionFactory) {
+//         return new AppRedisTokenStore(redisConnectionFactory);
+//     }
      
 //     @Bean
 //     public AppAuthenticationProvider authenticationProvider() {

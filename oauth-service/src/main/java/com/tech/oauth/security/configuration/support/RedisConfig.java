@@ -1,9 +1,11 @@
 package com.tech.oauth.security.configuration.support;
 
+import com.tech.oauth.security.provider.token.AppRedisTokenStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import redis.clients.jedis.JedisPoolConfig;
 
 
@@ -59,14 +62,6 @@ public class RedisConfig {
 		return config;
 	}
 
-	// @Bean
-	// public RedisClusterConfiguration redisClusterConfiguration(){
-	// RedisClusterConfiguration configuration = new
-	// RedisClusterConfiguration(Arrays.asList(nodes));
-	// //configuration.setMaxRedirects(maxRedirects);
-	//
-	// return configuration;
-	// }
 
 	@Bean
 	public RedisStandaloneConfiguration redisStandaloneConfiguration() {
@@ -89,16 +84,6 @@ public class RedisConfig {
 		return connectionFactory;
 	}
 
-	// /**
-	// * JedisConnectionFactory
-	// */
-	// @Bean
-	// public JedisConnectionFactory
-	// jedisConnectionFactory(RedisClusterConfiguration
-	// configuration,JedisPoolConfig
-	// jedisPoolConfig){
-	// return new JedisConnectionFactory(configuration,jedisPoolConfig);
-	// }
 
 	/**
 	 * 使用Jackson序列化对象
@@ -141,6 +126,11 @@ public class RedisConfig {
 		redisTemplate.afterPropertiesSet();
 
 		return redisTemplate;
+	}
+
+	@Bean
+	public TokenStore tokenStore(RedisConnectionFactory redisConnectionFactory) {
+		return new AppRedisTokenStore(redisConnectionFactory);
 	}
 
 }

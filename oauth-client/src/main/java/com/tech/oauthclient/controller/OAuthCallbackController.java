@@ -2,6 +2,8 @@ package com.tech.oauthclient.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.tech.oauthclient.model.AuthorizationResponse;
+
+import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping("/callback")
@@ -60,8 +64,11 @@ public class OAuthCallbackController {
             AuthorizationResponse response
                 = restTemplate.postForObject(tokenUri, params, AuthorizationResponse.class);
             logger.debug("oauth/token {}",response);
-            
-            String resourceParams = "?access_token=" +response.getAccess_token() +
+
+            //demo for parse jwt token content
+            parseJWT(response.getAccess_token());
+
+            String resourceParams = "?access_token=" + response.getAccess_token() +
                 "&userId=297ec9ff69f6b82a0169f6b83a8c0001";
 
             String accessTokeInfo = response.toString();
@@ -78,5 +85,19 @@ public class OAuthCallbackController {
         }
         return "Should not come here";
     }
+    private void parseJWT(String jwtToken){
 
+        try {
+            Claims claims  = Jwts.parser().setSigningKey("todo".getBytes("UTF-8"))
+                        .parseClaimsJws(jwtToken).getBody();
+            claims.keySet().forEach( key ->{
+                logger.debug("jwt key {}",key);
+                logger.debug("jwt value {}", claims.get(key));
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            logger.error("jwt parse error",e);
+        }
+
+    }
 }
